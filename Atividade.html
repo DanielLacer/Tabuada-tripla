@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html lang="pt">
+
+    <head>
+
+        <title>JavaScript - Trabalhando com Eventos</title>
+        <meta charset="utf-8">
+        <link href="style.css"  rel="stylesheet">
+
+        <style>
+
+            #DivCidade{
+
+                padding: 10px;
+                position: relative;
+                left: 130px;
+
+            }
+
+            #limpar{
+
+                padding: 10px;
+                position: relative;
+                border: none;
+                background:rgb(34, 109, 99);
+                left: 0px;
+                width: 80px;
+                top: 530px;
+                cursor: pointer;
+                color: white;
+
+            }
+
+            #iNumero{
+
+                border: none;
+                background: teal;
+                cursor: pointer;
+                color: white;
+
+            }
+
+            #Posterio{
+
+                position: relative;
+                left: -168.6px;
+            }
+
+            #Tela1{
+
+                border-style: solid;
+                border-color: aliceblue;
+                position: relative;
+                height: 300px;
+                width: 150px;
+                left: 60px;
+                top: 80px;
+
+            }
+
+            #Tela2{
+
+                border-style: solid;
+                border-color: aliceblue;
+                position: relative;
+                height: 300px;
+                width: 150px;
+                left: 250px;
+                top: -225px;
+
+            }
+
+            #Tela3{
+
+                border-style: solid;
+                border-color: aliceblue;
+                position: relative;
+                height: 300px;
+                width: 150px;
+                left: 440px;
+                top: -529px;
+
+            }
+
+        </style>
+
+    </head>
+
+    <script>
+
+    </script>
+
+    <body id="corpo">
+        <br>
+        <br>
+        <form id="box">
+
+            <div id="DivCidade">
+                <font color="white" face="arial"><b>Tabuada</b></font><br>
+                <select id="iNumero" name="nNumero">
+                   <option value="">Escolha o numero...</option>
+                   <option value="1">1</option>
+                   <option value="2">2</option>
+                   <option value="3">3</option>
+                   <option value="4">4</option>
+                   <option value="5">5</option>
+                   <option value="6">6</option>
+                   <option value="7">7</option>
+                   <option value="8">8</option>
+                   <option value="9">9</option>
+                   <option value="10">10</option>
+                </select>
+                <input type="button" value="calcular" onclick="Calcular()">
+            </div>
+            <br>
+
+            <div>
+                <input type="button" id="limpar" value="Limpar">
+            </div>
+
+            <div class="padrao">
+                <input type="checkbox" id="iA">
+                <font color="white" face="arial"><label><b>Mostrar a tabela anterior...</b></label></font>
+            </div>
+            <div id="Posterio">
+                <input type="checkbox" id="iP">
+                <font color="white" face="arial"><label><b>Mostrar a tabela posterior...</b></label></font>
+            </div>
+
+            <div id="Tela1">
+                <table style="color: aliceblue; left: 61px; position: relative; top: 40px;">
+                    <tbody><tr><td><label id="ta1"></label></td></tr>
+                        <tr><td><label id="ta2"></label></td></tr>
+                        <tr><td><label id="ta3"></label></td></tr>
+                        <tr><td><label id="ta4"></label></td></tr>
+                        <tr><td><label id="ta5"></label></td></tr>
+                        <tr><td><label id="ta6"></label></td></tr>
+                        <tr><td><label id="ta7"></label></td></tr>
+                        <tr><td><label id="ta8"></label></td></tr>
+                        <tr><td><label id="ta9"></label></td></tr>
+                        <tr><td><label id="ta10"></label></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="Tela2">
+                <table style="color: aliceblue; left: 61px; position: relative; top: 40px;">
+                    <tbody><tr><td><label id="tb1"></label></td></tr>
+                        <tr><td><label id="tb2"></label></td></tr>
+                        <tr><td><label id="tb3"></label></td></tr>
+                        <tr><td><label id="tb4"></label></td></tr>
+                        <tr><td><label id="tb5"></label></td></tr>
+                        <tr><td><label id="tb6"></label></td></tr>
+                        <tr><td><label id="tb7"></label></td></tr>
+                        <tr><td><label id="tb8"></label></td></tr>
+                        <tr><td><label id="tb9"></label></td></tr>
+                        <tr><td><label id="tb10"></label></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="Tela3">
+                <table style="color: aliceblue; left: 61px; position: relative; top: 40px;">
+                    <tbody><tr><td><label id="tc1"></label></td></tr>
+                        <tr><td><label id="tc2"></label></td></tr>
+                        <tr><td><label id="tc3"></label></td></tr>
+                        <tr><td><label id="tc4"></label></td></tr>
+                        <tr><td><label id="tc5"></label></td></tr>
+                        <tr><td><label id="tc6"></label></td></tr>
+                        <tr><td><label id="tc7"></label></td></tr>
+                        <tr><td><label id="tc8"></label></td></tr>
+                        <tr><td><label id="tc9"></label></td></tr>
+                        <tr><td><label id="tc10"></label></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+         <script>
+            
+            var listaI = document.getElementById("Tela1").getElementsByTagName("tbody")[0]
+            var listaII = document.getElementById("Tela2").getElementsByTagName("tbody")[0]
+            var listaIII = document.getElementById("Tela3").getElementsByTagName("tbody")[0]
+            var AtivoAnterior = document.getElementById("iA");
+            var AtivoPosterior = document.getElementById("iP");
+            var Limpar = document.getElementById("limpar");
+            var Anterior = false;
+            var Posterior = false;
+                   
+            AtivoAnterior.onclick = function(){
+			 	
+                 Anterior = true;
+
+            }
+         
+         
+            AtivoPosterior.onclick = function(){
+  
+                 Posterior = true;
+
+            }
+
+            Limpar.onclick = function(){
+                
+                listaI.innerHTML = "";
+                listaII.innerHTML = "";
+                listaIII.innerHTML = "";
+
+            }
+
+            function Calcular() {
+                
+                var valor = document.getElementById("iNumero").value;
+
+                    if (valor == "Escolha o numero...") return;
+                    valor = parseInt(valor)
+
+                      if(Anterior){
+                        var Ivalor = valor - 1;
+                        listaI.innerHTML = ''
+                        for (let i = 1; i <= 10; i++) {
+                            console.log(i*Ivalor)
+                            listaI.innerHTML += "<tr><td><label >"+i*Ivalor+"</label></td></tr>"
+                        }
+                      }          
+
+                    if(listaII){
+
+                        var IIvalor = valor;
+                        listaII.innerHTML = ''
+                        for (let i = 1; i <= 10; i++) {
+                            console.log(i*IIvalor)
+                            listaII.innerHTML+= "<tr><td><label >"+i*IIvalor+"</label></td></tr>"
+                        }
+                    }       
+                    
+                      if(Posterior){
+                        var IIIvalor = valor + 1;
+                        listaIII.innerHTML = ''
+                        for (let i = 1; i <= 10; i++) {
+                            console.log(i*IIIvalor)
+                            listaIII.innerHTML += "<tr><td><label >"+i*IIIvalor+"</label></td></tr>"
+                        }
+                      }     
+    
+            }
+            
+         </script>
+
+        </form>
+
+    </body>
+
+</html>
